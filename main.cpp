@@ -1,35 +1,46 @@
 ﻿#include <iostream>
 #include <vector>
 #include <algorithm>
-#include <iomanip>
 #include "student.h"
 #include "file_utils.h"
+#include "performance_utils.h"
 
 using namespace std;
 
 int main() {
-    vector<Student> students;
+    vector<int> sizes = { 1000, 10000, 100000, 1000000, 10000000 };
+    Timer timer;
 
-    try {
-        readStudentsFromFile("kursiokai.txt", students);
-    }
-    catch (const exception& e) {
-        cerr << e.what() << endl;
-        return 1;
-    }
+    // Generate files
+    timer.startTimer();
+    generateFiles(sizes);
+    timer.stopTimer("File generation");
 
-    sort(students.begin(), students.end(), [](const Student& a, const Student& b) {
-        return a.getLastName() < b.getLastName();
-        });
+    for (int size : sizes) {
+        vector<Student> students, vargsiukai, kietiakai;
 
-    cout << setw(15) << left << "Pavarde"
-        << setw(15) << "Vardas"
-        << setw(20) << "Galutinis (Vid.)"
-        << setw(20) << "Galutinis (Med.)" << endl;
-    cout << string(66, '-') << endl;
+        string filename = "students_" + to_string(size) + ".txt";
 
-    for (const auto& student : students) {
-        cout << student << endl;
+        // Read file
+        timer.startTimer();
+        readStudentsFromFile(filename, students);
+        timer.stopTimer("Reading file: " + filename);
+
+        // Categorize students
+        timer.startTimer();
+        for (const auto& student : students) {
+            if (student.getFinalGrade() < 5.0)
+                vargsiukai.push_back(student);
+            else
+                kietiakai.push_back(student);
+        }
+        timer.stopTimer("Categorizing students");
+
+        // Write to files
+        timer.startTimer();
+        writeStudentsToFile("vargsiukai_" + to_string(size) + ".txt", vargsiukai);
+        writeStudentsToFile("kietiakai_" + to_string(size) + ".txt", kietiakai);
+        timer.stopTimer("Writing categorized students to files");
     }
 
     return 0;

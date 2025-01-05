@@ -13,22 +13,18 @@ private:
     string lastName;
     vector<int> homework;
     int exam;
-    double finalGradeAvg;
-    double finalGradeMed;
-
-    void calculateFinalGrade();
-    void calculateFinalGradeWithMed();
+    double finalGrade;
 
 public:
     Student();
     Student(const string& first, const string& last, const vector<int>& hw, int ex);
 
+    double calculateFinalGrade();
     const string& getFirstName() const;
     const string& getLastName() const;
-    double getFinalGradeAvg() const;
-    double getFinalGradeMed() const;
+    double getFinalGrade() const;
 
     friend ostream& operator<<(ostream& out, const Student& student);
 };
 
-#endif
+#endif // STUDENT_H

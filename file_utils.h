@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 
+void generateFiles(const vector<int>& sizes);
 void readStudentsFromFile(const string& filename, vector<Student>& students);
+void writeStudentsToFile(const string& filename, const vector<Student>& students);
 
-#endif
+#endif // FILE_UTILS_H
