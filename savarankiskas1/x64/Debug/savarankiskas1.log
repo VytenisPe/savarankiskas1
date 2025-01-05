@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Users\vyten\source\repos\savarankiskas1\main.cpp(25,33): warning C4566: character represented by universal-character-name '\u0117' cannot be represented in the current code page (1252)
+  savarankiskas1.vcxproj -> C:\Users\vyten\source\repos\savarankiskas1\x64\Debug\savarankiskas1.exe

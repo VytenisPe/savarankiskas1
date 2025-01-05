@@ -13,24 +13,22 @@ private:
     string lastName;
     vector<int> homework;
     int exam;
-    double finalGrade;
+    double finalGradeAvg;
+    double finalGradeMed;
+
+    void calculateFinalGrade();
+    void calculateFinalGradeWithMed();
 
 public:
-    // Constructors and Destructor
     Student();
     Student(const string& first, const string& last, const vector<int>& hw, int ex);
-    Student(const Student& other);
-    Student& operator=(const Student& other);
-    ~Student();
 
-    // Methods
-    void calculateFinalGrade();
-    void calculateFinalGradeWithMedian();
-    static void readFromFile(const string& filename, vector<Student>& students);
+    const string& getFirstName() const;
+    const string& getLastName() const;
+    double getFinalGradeAvg() const;
+    double getFinalGradeMed() const;
 
-    // Overloaded operators
-    friend istream& operator>>(istream& in, Student& student);
     friend ostream& operator<<(ostream& out, const Student& student);
 };
 
-#endif // STUDENT_H
+#endif

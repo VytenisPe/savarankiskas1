@@ -1,32 +1,33 @@
 ﻿#include <iostream>
 #include <vector>
-#include <iomanip> // Reikalinga setw ir setprecision
+#include <algorithm>
+#include <iomanip>
 #include "student.h"
+#include "file_utils.h"
 
 using namespace std;
 
 int main() {
     vector<Student> students;
 
-    // Nurodykite failo pavadinimą
-    string filename = "studentai10000.txt"; // Čia įrašykite savo failo pavadinimą
-
-    cout << "Reading data from file: " << filename << endl;
-    Student::readFromFile(filename, students);
-
-    if (students.empty()) {
-        cerr << "No data was read. Please check the file format." << endl;
+    try {
+        readStudentsFromFile("kursiokai.txt", students);
+    }
+    catch (const exception& e) {
+        cerr << e.what() << endl;
         return 1;
     }
 
-    for (auto& student : students) {
-        student.calculateFinalGrade();
-    }
+    sort(students.begin(), students.end(), [](const Student& a, const Student& b) {
+        return a.getLastName() < b.getLastName();
+        });
 
-    cout << setw(15) << std::left << "Pavardė"
+    cout << setw(15) << left << "Pavarde"
         << setw(15) << "Vardas"
-        << setw(10) << "Galutinis (Vid.)" << endl;
-    cout << "--------------------------------------------------\n";
+        << setw(20) << "Galutinis (Vid.)"
+        << setw(20) << "Galutinis (Med.)" << endl;
+    cout << string(66, '-') << endl;
+
     for (const auto& student : students) {
         cout << student << endl;
     }
