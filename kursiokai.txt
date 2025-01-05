@@ -1,0 +1,10 @@
+Pavardė       Vardas      ND1  ND2   ND3  ND4  ND5  Egzaminas
+Sabonis       Arvydas      8    9     10   6    10   9
+Kurtinaitis   Rimas        7    10    8    5    4    6
+Kleiza        Linas        9    8     7    10   6    8
+Sabonis       Domantas     7    9     9    8    10   9
+Pocius        Martynas     8    8     10   9    8    8
+Valanciunas   Jonas	   7    8     6    8    7    8
+Kuzminskas    Mindaugas    9    9     8    7    9    8
+Marciulionis  Sarunas      8    7     8    7    8    8
+Kaukenas      Rimantas     9    9     10   7    8    9
